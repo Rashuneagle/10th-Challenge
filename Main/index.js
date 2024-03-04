@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { Triangle, Circle, Square } = require('./shapes');
 
 
 
@@ -30,4 +31,9 @@ const questions = [
     },
 
     
-]
+];
+
+// Function to create SVG file
+function writeToFile(fileName, data) {
+    
+}
