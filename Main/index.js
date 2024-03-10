@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-const { Triangle, Circle, Square } = require('./lib/shapes');
+const shapes = require('./lib/shapes');
+const fs = require('fs');
 
 const questions = [
     {
@@ -26,15 +27,23 @@ const questions = [
 ];
 
 // Function to create SVG file
+
+
 function writeToFile(fileName, data) {
-    
+    fs.writeToFile(fileName, data, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log('SVG has been generated sucessfully!');
+        }
+    });
 }
 
 // Function to handle user input
 function init() {
     inquirer.prompt(questions).then((answers) => {
         // Generate content using shapes function
-        const shapeContent = shapes(answers.title, answers.color, answers.shape, answers.shapeColor);
+        const shapeContent = shapes.render(answers.title, answers.color, answers.shape, answers.shapeColor);
         // Use writeToFile function to save the content to a file
         writeToFile('logo.svg', shapeContent);
     });
