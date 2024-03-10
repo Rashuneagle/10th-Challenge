@@ -2,6 +2,9 @@ class Shape {
     constructor() {
 
     }
+    render(){
+
+    }
 }
 
 class Triangle extends Shape {
