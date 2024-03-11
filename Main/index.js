@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const shapes = require('./lib/shapes');
+const shapeFactory = require('./lib/shapeFactory');
 const fs = require('fs');
+
 
 const questions = [
     {
@@ -38,15 +40,17 @@ function writeToFile(fileName, data) {
     });
 }
 
-
-
 // Function to handle user input
 function init() {
     inquirer.prompt(questions).then((answers) => {
-        // Generate content using generateSVG function
-        const svgContent = generateSVG(answers.title, answers.color, answers.shape, answers.shapeColor);
+        // Use shapeFactory to create the shape
+        const shape = shapeFactory.createShape(answers.shape, answers.color, answers.title, answers.shapeColor);
+        // Get the rendered SVG
+        const svgContent = shape.render();
         // Use writeToFile function to save the content to a file
         writeToFile('logo.svg', svgContent);
     });
 }
+
+// Call the function
 init();
