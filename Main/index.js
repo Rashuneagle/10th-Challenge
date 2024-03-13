@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-const shapes = require('./lib/shapes');
 const shapeFactory = require('./lib/shapeFactory');
 const fs = require('fs');
 
